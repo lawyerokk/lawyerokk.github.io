@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김민수 | 자기소개</title>
+  <style>
+    :root {
+      --bg: #0a192f;
+      --bg-soft: #112240;
+      --line: #233554;
+      --text: #ccd6f6;
+      --muted: #8892b0;
+      --title: #e6f1ff;
+      --accent: #64ffda;
+      --accent-soft: rgba(100, 255, 218, 0.12);
+      --shadow: 0 12px 30px rgba(2, 12, 27, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(100, 255, 218, 0.07), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(72, 90, 145, 0.2), transparent 28%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 25, 47, 0.82);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(136, 146, 176, 0.16);
+    }
+
+    .top-nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-weight: 800;
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+      animation: pulse 2.8s infinite;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.86rem;
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: 0.24s ease;
+    }
+
+    .menu a::before {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .menu a[data-num="01"]::before { content: "01."; }
+    .menu a[data-num="02"]::before { content: "02."; }
+    .menu a[data-num="03"]::before { content: "03."; }
+    .menu a[data-num="04"]::before { content: "04."; }
+    .menu a[data-num="05"]::before { content: "05."; }
+
+    .menu a:hover,
+    .menu a.active {
+      color: var(--accent);
+      background: rgba(100, 255, 218, 0.08);
+    }
+
+    .side-left,
+    .side-right {
+      position: fixed;
+      bottom: 0;
+      width: 40px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+    }
+
+    .side-left {
+      left: 26px;
+    }
+
+    .side-right {
+      right: 26px;
+    }
+
+    .side-left a {
+      text-decoration: none;
+      color: var(--muted);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .side-left a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .side-right .email {
+      writing-mode: vertical-rl;
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .line {
+      width: 1px;
+      height: 90px;
+      background: var(--muted);
+      opacity: 0.5;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 26px 80px;
+    }
+
+    section {
+      margin-bottom: 110px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      font-size: 0.96rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6.2vw, 4.7rem);
+      line-height: 1.1;
+      color: var(--title);
+      letter-spacing: -0.02em;
+    }
+
+    .hero .sub {
+      margin: 0;
+      font-size: clamp(1.45rem, 4.6vw, 3.6rem);
+      color: var(--muted);
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1.04rem;
+    }
+
+    .hero .cta {
+      margin-top: 20px;
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      border-radius: 8px;
+      text-decoration: none;
+      padding: 13px 18px;
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      transition: all 0.25s ease;
+    }
+
+    .hero .cta:hover {
+      transform: translateY(-2px);
+      background: var(--accent-soft);
+    }
+
+    .sec-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--title);
+    }
+
+    .sec-title .num {
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .sec-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+      max-width: 290px;
+    }
+
+    .card {
+      background: linear-gradient(160deg, rgba(17, 34, 64, 0.88), rgba(13, 28, 52, 0.9));
+      border: 1px solid rgba(100, 255, 218, 0.09);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .quote {
+      margin-top: 15px;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "Consolas", monospace;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .chip-title {
+      margin: 0 0 10px;
+      color: var(--title);
+      font-size: 1.06rem;
+    }
+
+    .chip-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .chip-list li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .chip-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "Consolas", monospace;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline .row {
+      border: 1px solid rgba(100, 255, 218, 0.1);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: rgba(17, 34, 64, 0.7);
+    }
+
+    .timeline h3 {
+      margin: 0 0 8px;
+      color: var(--title);
+      font-size: 1.02rem;
+    }
+
+    .timeline p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+    }
+
+    .goal-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .goal {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(100, 255, 218, 0.1);
+      background: rgba(17, 34, 64, 0.7);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .goal:hover {
+      transform: translateY(-3px);
+      border-color: rgba(100, 255, 218, 0.34);
+    }
+
+    .goal h4 {
+      margin: 0 0 9px;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      font-size: 0.94rem;
+    }
+
+    .goal p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 0.94rem;
+    }
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-family: "SFMono-Regular", "Consolas", monospace;
+      font-size: 0.82rem;
+      padding-bottom: 26px;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.28); }
+      70% { box-shadow: 0 0 0 9px rgba(100, 255, 218, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+    }
+
+    @media (max-width: 1024px) {
+      .side-left,
+      .side-right {
+        display: none;
+      }
+
+      main {
+        max-width: 860px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .grid-two,
+      .goal-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 66vh;
+      }
+
+      .top-nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <div class="brand">KM</div>
+      <nav class="menu" id="menu">
+        <a href="#about" data-num="01">소개</a>
+        <a href="#motivation" data-num="02">지원동기</a>
+        <a href="#personality" data-num="03">장단점</a>
+        <a href="#experience" data-num="04">경험</a>
+        <a href="#goal" data-num="05">포부</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="side-left" aria-label="social links">
+    <a href="#" aria-label="github">GH</a>
+    <a href="#" aria-label="blog">BL</a>
+    <a href="#" aria-label="portfolio">PT</a>
+    <div class="line"></div>
+  </aside>
+
+  <aside class="side-right" aria-label="email">
+    <a class="email" href="mailto:kimminsu.dev@email.com">kimminsu.dev@email.com</a>
+    <div class="line"></div>
+  </aside>
+
+  <main>
+    <section class="hero show" id="about">
+      <p class="eyebrow">안녕하세요, 제 이름은</p>
+      <h1>김민수입니다.</h1>
+      <p class="sub">사용자에게 실제 가치를 주는 서비스를 만드는 소프트웨어 개발자입니다.</p>
+      <p>
+        컴퓨터공학 전공 기반으로 프로그래밍 기초를 다졌고, 졸업 후 2년간 스타트업 웹 개발을 담당했습니다.
+        빠르게 변하는 IT 환경에서 새로운 기술을 학습하고 적용하는 과정을 즐기며,
+        사용자 경험을 개선하는 기술적 솔루션을 찾는 데 큰 흥미를 느낍니다.
+      </p>
+      <a class="cta" href="#motivation">자기소개 더 보기</a>
+    </section>
+
+    <section id="motivation">
+      <h2 class="sec-title"><span class="num">01.</span> 지원 동기 및 생활신조</h2>
+      <article class="card">
+        <p>
+          혁신적인 기술력과 우수한 개발 문화로 인정받는 환경에서 제 역량을 한층 발전시키고,
+          의미 있는 프로젝트에 기여하고 싶습니다. 개발자는 단순히 기능을 구현하는 사람이 아니라,
+          사람의 일과 삶을 더 편리하게 바꾸는 해결책을 설계하는 사람이라고 믿습니다.
+        </p>
+        <p class="quote">"기술은 사람을 위해 존재한다"</p>
+      </article>
+    </section>
+
+    <section id="personality">
+      <h2 class="sec-title"><span class="num">02.</span> 성격의 장단점</h2>
+      <div class="grid-two">
+        <article class="card">
+          <h3 class="chip-title">장점</h3>
+          <ul class="chip-list">
+            <li>개인 시간에도 기술 트렌드를 학습하고 사이드 프로젝트를 지속하는 꾸준함이 있습니다.</li>
+            <li>개발자, 디자이너, 기획자와 원활히 소통하며 공동 목표 중심으로 협업합니다.</li>
+            <li>복잡한 버그와 기술 이슈에서도 포기하지 않고 다양한 방식으로 해결을 시도합니다.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="chip-title">단점과 개선</h3>
+          <ul class="chip-list">
+            <li>코드 완성도에 몰입해 일정이 지연될 수 있는 완벽주의 성향이 있습니다.</li>
+            <li>이를 보완하기 위해 우선순위를 명확히 정하고 적정 완성도를 기준으로 실행하고 있습니다.</li>
+            <li>정기적인 셀프 리뷰를 통해 속도와 품질의 균형을 유지하는 습관을 만들었습니다.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="sec-title"><span class="num">03.</span> 학창시절 경험 및 특이사항</h2>
+      <div class="timeline">
+        <article class="row">
+          <h3>교내 해커톤 우수상 - 지역 상권 활성화 앱</h3>
+          <p>
+            대학교 3학년 때 팀장으로 5명의 팀원을 이끌며 48시간 동안 React Native 기반 앱을 완성했습니다.
+            백엔드 API 설계부터 프론트엔드 구현까지 풀스택 전 과정에 참여해 실무형 개발 역량을 키웠습니다.
+          </p>
+        </article>
+        <article class="row">
+          <h3>리더십과 실행력</h3>
+          <p>
+            짧은 시간 안에 팀원 역량을 파악하고 작업을 효율적으로 분배해 목표를 완수했습니다.
+            일정 관리와 의사결정, 협업 조율 역량을 실제 프로젝트에서 검증했습니다.
+          </p>
+        </article>
+        <article class="row">
+          <h3>컴퓨터공학과 학회 멘토링</h3>
+          <p>
+            4년간 후배 멘토링을 진행하며 복잡한 개념을 쉽게 설명하는 능력을 길렀습니다.
+            이 경험은 현재 코드 리뷰와 기술 공유 커뮤니케이션의 강점으로 이어지고 있습니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="goal">
+      <h2 class="sec-title"><span class="num">04.</span> 입사 후 포부</h2>
+      <div class="goal-wrap">
+        <article class="goal">
+          <h4>STEP 1 · FAST ADAPT</h4>
+          <p>개발 문화와 코딩 컨벤션에 빠르게 적응해 팀의 신뢰받는 구성원으로 자리잡겠습니다.</p>
+        </article>
+        <article class="goal">
+          <h4>STEP 2 · GROW WITH TEAM</h4>
+          <p>비즈니스 도메인 이해도를 높이고 팀 협업을 통해 실무 역량을 빠르게 고도화하겠습니다.</p>
+        </article>
+        <article class="goal">
+          <h4>STEP 3 · TECH LEADERSHIP</h4>
+          <p>클라우드와 MSA 전문성을 쌓아 확장성과 안정성을 높이고 주니어 멘토링에도 기여하겠습니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>Designed with intention for people-focused software development.</footer>
+  </main>
+
+  <script>
+    const sections = document.querySelectorAll("main section");
+    const links = document.querySelectorAll(".menu a");
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    sections.forEach((sec) => {
+      if (!sec.classList.contains("hero")) {
+        revealObserver.observe(sec);
+      }
+    });
+
+    const navObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const id = entry.target.id;
+          links.forEach((link) => {
+            const target = link.getAttribute("href").slice(1);
+            link.classList.toggle("active", target === id);
+          });
+        });
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: 0
+      }
+    );
+
+    sections.forEach((sec) => navObserver.observe(sec));
+  </script>
+</body>
+</html>
